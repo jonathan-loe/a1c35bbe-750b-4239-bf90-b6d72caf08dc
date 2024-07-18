@@ -13,10 +13,33 @@ Output
 1 5 9
 ```
 
-# How to verify
+## Current setup
 
-Unit tests constains some test cases provided in the code challenge. To verify the function correctness, please run the following command under the root folder to run the unit tests.
+The solution has been setup to run static code analysis during `dotnet build` that checks C# code for conformance to StyleCop's recommended coding styles and design guidelines defined in `.editorconfig`.
+
+## How to verify function correctness
+
+Unit tests constains some test cases provided in the code challenge. To verify the function correctness, please run the following command under the solution root folder to run the unit tests.
 
 ```
 # dotnet test
 ```
+
+## How to generate test coverage report 
+
+Run the following command to generate test results.
+
+```
+$ dotnet test --collect:"XPlat Code Coverage"
+```
+
+Then run the following command to generate the report in HTML.
+
+```
+$ reportgenerator
+  -reports:"/Path/To/TestProjectFolder/TestResults/{guid}/coverage.cobertura.xml"
+  -targetdir:"coveragereport"
+  -reporttypes:Html
+```
+
+Please refer to Microsoft documentation [here](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage?tabs=linux#integrate-with-net-test).
