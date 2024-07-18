@@ -58,11 +58,11 @@ public class LisGenerator
     static int GetLongestSequence(IEnumerable<string[]> listOfLongestIncreasingSubsequence)
     {
         var longestLength = 0;
-        foreach (var lis in listOfLongestIncreasingSubsequence)
+        foreach (var sequence in listOfLongestIncreasingSubsequence)
         {
-            if (lis.Length > longestLength)
+            if (sequence.Length > longestLength)
             {
-                longestLength = lis.Length;
+                longestLength = sequence.Length;
             }
         }
         return longestLength;
