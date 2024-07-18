@@ -13,39 +13,33 @@ public class LisGenerator
         if (integers.Length == 1)
             return integers[0];
 
-        var listOfLongestLis = new List<string[]>();
-        var longestLis = new List<string> { integers[0] };
+        var listOfLongestIncreasingSubsequence = new List<string[]>();
 
-        var previousInteger = int.Parse(integers[0]);
+        var previousInteger = integers[0];
+        var longestIncreasingSubsequence = new List<string> { previousInteger };
         for (var i = 1; i < integers.Length; i++)
         {
-            var currentInteger = int.Parse(integers[i]);
-            if (currentInteger > previousInteger)
+            var currentInteger = integers[i];
+            if (IsIncreasingSequence(previousInteger, currentInteger))
             {
-                longestLis.Add(integers[i]);
+                longestIncreasingSubsequence.Add(currentInteger);
             }
             else
             {
-                listOfLongestLis.Add([.. longestLis]);
-                longestLis = new List<string> { integers[i] };
+                listOfLongestIncreasingSubsequence.Add([.. longestIncreasingSubsequence]);
+                longestIncreasingSubsequence = new List<string> { currentInteger };
             }
             previousInteger = currentInteger;
         }
-        if (longestLis.Count > 0)
+
+        var longestLisExists = longestIncreasingSubsequence.Count > 0;
+        if (longestLisExists)
         {
-            listOfLongestLis.Add([.. longestLis]);
+            listOfLongestIncreasingSubsequence.Add([.. longestIncreasingSubsequence]);
         }
 
-        var longestLength = 0;
-        foreach (var lis in listOfLongestLis)
-        {
-            if (lis.Length > longestLength)
-            {
-                longestLength = lis.Length;
-            }
-        }
-
-        foreach (var lis in listOfLongestLis)
+        var longestLength = GetLongestSequence(listOfLongestIncreasingSubsequence);
+        foreach (var lis in listOfLongestIncreasingSubsequence)
         {
             if (lis.Length == longestLength)
             {
@@ -53,6 +47,24 @@ public class LisGenerator
             }
         }
 
-        return string.Empty;
+        throw new Exception("Uh oh! Something's not right :(");
+    }
+
+    static bool IsIncreasingSequence(string previousInteger, string currentInteger)
+    {
+        return int.Parse(previousInteger) < int.Parse(currentInteger);
+    }
+
+    static int GetLongestSequence(IEnumerable<string[]> listOfLongestIncreasingSubsequence)
+    {
+        var longestLength = 0;
+        foreach (var lis in listOfLongestIncreasingSubsequence)
+        {
+            if (lis.Length > longestLength)
+            {
+                longestLength = lis.Length;
+            }
+        }
+        return longestLength;
     }
 }
