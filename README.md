@@ -13,9 +13,9 @@ Output
 1 5 9
 ```
 
-# Run the tests
+# How to verify
 
-Run the following command under the root folder to run the test cases.
+Unit tests constains some test cases provided in the code challenge. To verify the function correctness, please run the following command under the root folder to run the unit tests.
 
 ```
 # dotnet test
