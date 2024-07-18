@@ -7,11 +7,15 @@ public class LisGenerator
     public static string Generate(string text)
     {
         if (string.IsNullOrWhiteSpace(text))
+        {
             return string.Empty;
+        }
 
         var integers = text.Trim().Split(Space);
         if (integers.Length == 1)
+        {
             return integers[0];
+        }
 
         var listOfLongestIncreasingSubsequence = new List<string[]>();
 
@@ -50,12 +54,12 @@ public class LisGenerator
         throw new Exception("Uh oh! Something's not right :(");
     }
 
-    static bool IsIncreasingSequence(string previousInteger, string currentInteger)
+    private static bool IsIncreasingSequence(string previousInteger, string currentInteger)
     {
         return int.Parse(previousInteger) < int.Parse(currentInteger);
     }
 
-    static int GetLongestSequence(IEnumerable<string[]> listOfLongestIncreasingSubsequence)
+    private static int GetLongestSequence(IEnumerable<string[]> listOfLongestIncreasingSubsequence)
     {
         var longestLength = 0;
         foreach (var sequence in listOfLongestIncreasingSubsequence)
