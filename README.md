@@ -1,3 +1,5 @@
+[![.NET](https://github.com/jonathan-loe/a1c35bbe-750b-4239-bf90-b6d72caf08dc/actions/workflows/dotnet.yml/badge.svg)](https://github.com/jonathan-loe/a1c35bbe-750b-4239-bf90-b6d72caf08dc/actions/workflows/dotnet.yml)
+
 # LisGenerator
 
 ## What it is
